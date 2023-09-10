@@ -1,0 +1,9 @@
+*.out
+*.gch
+*.o
+
+.DS_Store
+push_swap
+push_swap_run_args.log
+push_swap_result.log
+settings.json
