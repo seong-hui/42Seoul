@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:52:25 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/09/13 17:22:53 by seonghmo         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:32:25 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,10 @@ char	*ft_strjoin(char *s1, char *s2)
 		p[i++] = s2[j++];
 	p[i] = '\0';
 	return (p);
+}
+
+void	exit_error(void)
+{
+	perror(NULL);
+	exit(1);
 }

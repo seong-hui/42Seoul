@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 17:02:36 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/09/13 17:34:25 by seonghmo         ###   ########.fr       */
+/*   Updated: 2023/09/13 20:17:58 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	first_child(t_arg arg, char **envp, int *fds)
 {
-	//
 	close(fds[0]);
 	dup2(fds[1], STDOUT_FILENO);
 	dup2(arg.infile, STDIN_FILENO);
@@ -35,6 +34,17 @@ void	last_child(t_arg arg, char **envp, int *fds)
 	exit(1);
 }
 
+void	close_fife(int *fds, int i)
+{
+	close(fds[0]);
+	close(fds[1]);
+	while (i > 0)
+	{
+		waitpid(-1, 0, 0);
+		i--;
+	}
+}
+
 void	pipex(int ac, t_arg arg, char **envp)
 {
 	int		fds[2];
@@ -44,15 +54,12 @@ void	pipex(int ac, t_arg arg, char **envp)
 	i = 0;
 	pipe(fds);
 	if (pipe(fds) < 0)
-		perror(NULL);
+		exit_error();
 	while (i < ac - 3)
 	{
 		pid = fork();
 		if (pid < 0)
-		{
-			perror("fork");
-			exit(1);
-		}
+			exit_error();
 		if (pid == 0)
 		{
 			if (i == 0)
@@ -61,15 +68,7 @@ void	pipex(int ac, t_arg arg, char **envp)
 				last_child(arg, envp, fds);
 		}
 		else
-		{
 			i++;
-		}
 	}
-	close(fds[0]);
-	close(fds[1]);
-	while (i > 0)
-	{
-		waitpid(-1, 0, 0);
-		i--;
-	}
+	close_fife(fds, i);
 }

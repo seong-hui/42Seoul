@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:42:43 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/09/13 17:29:15 by seonghmo         ###   ########.fr       */
+/*   Updated: 2023/09/13 19:32:34 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ char	**ft_split(char const *s, char c);
 int		ft_strncmp(char *s1, const char *s2, int n);
 char	*ft_strjoin(char *s1, char *s2);
 void	pipex(int ac, t_arg arg, char **envp);
+void	exit_error(void);
 
 #endif
