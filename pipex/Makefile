@@ -6,6 +6,7 @@ SRCS += main.c
 SRCS += pipex.c
 SRCS += utils.c
 SRCS += utils2.c
+SRCS += free.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -15,7 +16,7 @@ all: $(NAME)
 	$(CC) -c $(CFLAGS) $<
 
 $(NAME): $(OBJS)
-	$(CC) -o $@ $^
+	$(CC) -fsanitize=address -o $@ $^
 	@echo "\033[36m" --- 🔹 Compile Complete 🔹 ---
 
 clean:

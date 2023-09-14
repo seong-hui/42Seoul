@@ -6,7 +6,7 @@
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:41:19 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/09/13 20:47:48 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/09/14 16:32:56 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,25 @@ char	**get_path(char **envp)
 	char	**path;
 
 	i = 0;
+	path = NULL;
 	while (envp[i])
 	{
 		if (ft_strncmp("PATH", envp[i], 4) == 0)
 		{
 			path = ft_split(envp[i] + 5, ':');
-			return (path);
+			break ;
 		}
 		i++;
 	}
-	return (0);
+	return (path);
+}
+
+char	*make_cmd(char *cmd)
+{
+	char	*tmp;
+
+	tmp = ft_strdup(cmd);
+	return (tmp);
 }
 
 char	*get_cmd(char **path, char *cmd)
@@ -40,7 +49,7 @@ char	*get_cmd(char **path, char *cmd)
 	i = 0;
 	fd = access(cmd, X_OK);
 	if (fd != -1)
-		return (cmd);
+		return (ft_strdup(cmd));
 	tmp_cmd = ft_strjoin("/", cmd);
 	while (path[i])
 	{
@@ -57,6 +66,11 @@ char	*get_cmd(char **path, char *cmd)
 	}
 	free(tmp_cmd);
 	return (0);
+}
+
+void	check_leak(void)
+{
+	system("leaks pipex");
 }
 
 int	main(int ac, char **av, char **envp)
@@ -81,4 +95,6 @@ int	main(int ac, char **av, char **envp)
 	if (arg.cmd1 == NULL || arg.cmd2 == NULL)
 		perror(NULL);
 	pipex(ac, arg, envp);
+	all_free(arg);
+	atexit(check_leak);
 }

@@ -6,7 +6,7 @@
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:42:43 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/09/13 19:32:34 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/09/14 16:37:42 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ int		ft_strncmp(char *s1, const char *s2, int n);
 char	*ft_strjoin(char *s1, char *s2);
 void	pipex(int ac, t_arg arg, char **envp);
 void	exit_error(void);
+char	*ft_strdup(const char *s1);
+void	all_free(t_arg arg);
 
 #endif
