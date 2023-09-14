@@ -6,7 +6,7 @@
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:41:19 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/09/14 16:32:56 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/09/14 19:15:51 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,6 @@ char	**get_path(char **envp)
 		i++;
 	}
 	return (path);
-}
-
-char	*make_cmd(char *cmd)
-{
-	char	*tmp;
-
-	tmp = ft_strdup(cmd);
-	return (tmp);
 }
 
 char	*get_cmd(char **path, char *cmd)
@@ -78,23 +70,14 @@ int	main(int ac, char **av, char **envp)
 	t_arg	arg;
 
 	if (ac != 5)
-		exit_error();
+		return (1);
 	arg.infile = open(av[1], O_RDONLY);
-	if (arg.infile == -1)
-		perror(NULL);
 	arg.outfile = open(av[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (arg.outfile == -1)
-		perror(NULL);
 	arg.path = get_path(envp);
 	arg.cmd1_str = ft_split(av[2], ' ');
 	arg.cmd2_str = ft_split(av[3], ' ');
-	if (arg.cmd1_str == NULL || arg.cmd2_str == NULL)
-		perror(NULL);
 	arg.cmd1 = get_cmd(arg.path, arg.cmd1_str[0]);
 	arg.cmd2 = get_cmd(arg.path, arg.cmd2_str[0]);
-	if (arg.cmd1 == NULL || arg.cmd2 == NULL)
-		perror(NULL);
 	pipex(ac, arg, envp);
 	all_free(arg);
-	atexit(check_leak);
 }

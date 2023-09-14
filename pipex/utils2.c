@@ -6,7 +6,7 @@
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 17:52:25 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/09/13 20:55:46 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/09/14 17:15:17 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strlen(const char *s)
 	int	len;
 
 	len = 0;
-	while (s[len])
+	while (s && s[len])
 		len++;
 	return (len);
 }
