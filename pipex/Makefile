@@ -16,7 +16,7 @@ all: $(NAME)
 	$(CC) -c $(CFLAGS) $<
 
 $(NAME): $(OBJS)
-	$(CC) -fsanitize=address -o $@ $^
+	$(CC) -o $@ $^
 	@echo "\033[36m" --- 🔹 Compile Complete 🔹 ---
 
 clean:
