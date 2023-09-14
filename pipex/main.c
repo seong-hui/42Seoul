@@ -6,7 +6,7 @@
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:41:19 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/09/14 19:15:51 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/09/14 19:34:47 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,6 @@ char	*get_cmd(char **path, char *cmd)
 	return (0);
 }
 
-void	check_leak(void)
-{
-	system("leaks pipex");
-}
-
 int	main(int ac, char **av, char **envp)
 {
 	t_arg	arg;
@@ -80,4 +75,5 @@ int	main(int ac, char **av, char **envp)
 	arg.cmd2 = get_cmd(arg.path, arg.cmd2_str[0]);
 	pipex(ac, arg, envp);
 	all_free(arg);
+	return (0);
 }
