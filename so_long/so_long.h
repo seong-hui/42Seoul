@@ -6,7 +6,7 @@
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 20:46:18 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/09/26 17:06:31 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/10/07 19:07:29 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include "./mlx/mlx.h"
 # include <fcntl.h>
-# include <stdio.h>
 
 typedef struct s_game
 {
@@ -38,6 +37,15 @@ typedef struct s_game
 	int		walk_cnt;
     
 }   t_game;
+
+typedef struct s_check
+{
+	int *visited;
+	int c;
+	int	vaild_path;
+	
+}	t_check;
+
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -64,5 +72,11 @@ int		key_press(int keycode, t_game *game);
 int		exit_game(t_game *game);
 int		make_map(t_game *game);
 int		clear_game(t_game *game);
+void	*ft_memset(void *b, int c, int len);
+char *ft_strdup_for_map(char *s1);
+int init_check(t_check *check, t_game *game);
+void	dfs(t_game *game, t_check *check, int p_index);
+int print_error(char *str);
+
 
 #endif
