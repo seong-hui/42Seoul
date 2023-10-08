@@ -6,7 +6,7 @@
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:12:37 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/07 21:00:30 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/10/08 15:08:16 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ int make_map(t_game *game)
 	return (0);
 }
 
+int ft_strlen_for_map(char *s)
+{
+	int	len;
+
+	len = 0;
+	while (s && s[len] && s[len]!='\n')
+		len++;
+	return (len);
+}
+
 void read_map(char *map ,t_game *game)
 {
 	int fd;
@@ -48,17 +58,20 @@ void read_map(char *map ,t_game *game)
 
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
-	game->width = ft_strlen(line) - 1;
+	game->width = ft_strlen_for_map(line);
 	game->height = 1;
 	game->map_str = ft_strdup_for_map(line);
 	free(line);
 	while((line = get_next_line(fd)) != NULL)
 	{
-		game->height += 1;
-		tmp = ft_strdup_for_map(line);
-		if ((ft_strlen(tmp)) != game->width)
+		if ((ft_strlen_for_map(line)) != game->width)
+		{
 			game->width = -1;
+			return;
+		}
+		tmp = ft_strdup_for_map(line);
 		game->map_str = ft_strjoin(game->map_str, tmp);
+		game->height += 1;
 		free(tmp);
 	}
 	close(fd);
@@ -71,7 +84,6 @@ void set_map(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx) {
         perror("mlx_init");
-        // 오류 처리 또는 프로그램 종료 로직 추가
         exit(1);
     }
 	game->win = mlx_new_window(game->mlx, 64 * game->width, 64 * game->height, "so_long");
@@ -94,6 +106,7 @@ int	main(int ac, char **av)
 	t_game	game;
 	t_check	check;
 	int		p_index;
+
 	
 	if (ac != 2)
 		return (1);
@@ -107,7 +120,7 @@ int	main(int ac, char **av)
 	set_map(&game);
 	mlx_loop_hook(game.mlx, &make_map, &game);
 	mlx_key_hook(game.win, &key_press, &game);
-	//mlx_hook(game.win, PRESS_RED_BUTTON, 0, &exit_game, &game);
+	mlx_hook(game.win, PRESS_RED_BUTTON, 0, &exit_game, &game);
 	mlx_loop_hook(game.mlx, &make_map, &game);
 	mlx_loop(game.mlx);
 	return(0);

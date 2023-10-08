@@ -6,7 +6,7 @@
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:51:07 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/07 19:11:59 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/10/08 14:25:46 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ char *ft_strdup_for_map(char *s1)
 
 	i = 0;
 	len = ft_strlen(s1);
-	p = (char *)malloc(len + 1);
+	p = (char *)malloc(len);
 	if (!p)
 		return (0);
-	while (s1[i] != '\n')
+	while (s1[i] && s1[i] !='\n')
 	{
 		p[i] = s1[i];
 		i++;
