@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 20:46:18 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/09 16:22:18 by seonghmo         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:11:51 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,9 @@ typedef struct s_check
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	42
 # endif
-# ifndef MAX_WIDTH
-#  define MAX_WIDTH		2560
-# endif
-# ifndef MAX_HEIGHT
-#  define MAX_HEIGHT	1344
-# endif
 
+# define MAX_WIDTH			2560
+# define MAX_HEIGHT			1344
 # define KEY_ESC			53
 # define KEY_W				13
 # define KEY_S				1

@@ -33,6 +33,7 @@ $(NAME): $(OBJS) $(MLX)
 clean:
 	rm -f $(OBJS)
 	rm -f $(MLX)
+	make clean -C $(MLX_DIR)
 
 fclean: clean
 	rm -f $(NAME) 
