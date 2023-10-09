@@ -6,7 +6,7 @@
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:12:37 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/09 19:42:43 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/10/09 21:24:47 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	read_file(char *map)
 	int	len;
 
 	len = ft_strlen(map);
-	if (len < 5 || map[len - 1] != 'r'
+	if (len < 4 || map[len - 1] != 'r'
 		|| map[len - 2] != 'e'
 		|| map[len - 3] != 'b'
 		|| map[len - 4] != '.')
