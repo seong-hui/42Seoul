@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   moving_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
+/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:19:04 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/07 16:26:33 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/10/09 15:54:23 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_putnbr(int nb)
-{
-	long long	n;
-	char		c;
-
-	n = nb;
-	if (n > 9)
-		ft_putnbr(n / 10);
-	c = n % 10 + '0';
-	write(1, &c, 1);
-}
-
 
 void	move_w(t_game *g)
 {
@@ -46,7 +33,7 @@ void	move_w(t_game *g)
 		g->walk_cnt++;
 		ft_putnbr(g->walk_cnt);
 		write(1, "\n", 1);
-		make_map(g);
+		make_map1(g);
 	}
 }
 
@@ -71,7 +58,7 @@ void	move_a(t_game *g)
 		g->walk_cnt++;
 		ft_putnbr(g->walk_cnt);
 		write(1, "\n", 1);
-		make_map(g);
+		make_map1(g);
 	}
 }
 
@@ -96,7 +83,7 @@ void	move_s(t_game *g)
 		g->walk_cnt++;
 		ft_putnbr(g->walk_cnt);
 		write(1, "\n", 1);
-		make_map(g);
+		make_map1(g);
 	}
 }
 
@@ -121,7 +108,7 @@ void	move_d(t_game *g)
 		g->walk_cnt++;
 		ft_putnbr(g->walk_cnt);
 		write(1, "\n", 1);
-		make_map(g);
+		make_map1(g);
 	}
 }
 
@@ -137,5 +124,5 @@ int	key_press(int keycode, t_game *game)
 		move_d(game);
 	else if (keycode == KEY_ESC)
 		exit_game(game);
-	return (0);	
+	return (0);
 }

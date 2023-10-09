@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
+/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:51:07 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/08 14:25:46 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/10/09 16:07:19 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	exit_game(t_game *game)
 int	clear_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx, game->win);
-    write(1, "CLEAR GAME!\n", 12);
+	write (1, "CLEAR GAME!\n", 12);
 	exit(0);
 }
 
 void	*ft_memset(void *b, int c, int len)
 {
 	unsigned char	*p;
-	int			i;
+	int				i;
 
 	i = 0;
 	p = (unsigned char *)b;
@@ -40,7 +40,7 @@ void	*ft_memset(void *b, int c, int len)
 	return (b);
 }
 
-char *ft_strdup_for_map(char *s1)
+char	*ft_strdup_for_map(char *s1)
 {
 	char	*p;
 	int		len;
@@ -51,11 +51,23 @@ char *ft_strdup_for_map(char *s1)
 	p = (char *)malloc(len);
 	if (!p)
 		return (0);
-	while (s1[i] && s1[i] !='\n')
+	while (s1[i] && s1[i] != '\n')
 	{
 		p[i] = s1[i];
 		i++;
 	}
 	p[i] = '\0';
 	return (p);
+}
+
+void	ft_putnbr(int nb)
+{
+	long long	n;
+	char		c;
+
+	n = nb;
+	if (n > 9)
+		ft_putnbr(n / 10);
+	c = n % 10 + '0';
+	write(1, &c, 1);
 }

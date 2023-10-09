@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   checking_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
+/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 21:01:21 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/08 15:15:51 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/10/09 16:07:36 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_wall_row(t_game *game)
+int	check_wall_row(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while(i < game->height)
+	while (i < game->height)
 	{
 		j = 0;
 		while (j < game->width)
@@ -32,13 +32,13 @@ int check_wall_row(t_game *game)
 	return (0);
 }
 
-int check_wall_col(t_game *game)
+int	check_wall_col(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while(i < game->width)
+	while (i < game->width)
 	{
 		j = 0;
 		while (j < game->height)
@@ -52,54 +52,49 @@ int check_wall_col(t_game *game)
 	return (0);
 }
 
-int essential(t_game *game)
+int	essential(t_game *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while(i < game->height)
+	while (i < game->height)
 	{
 		j = 0;
 		while (j < game->width)
 		{
 			if (game->map_str[i * game->width + j] == 'C')
 				game->c++;
-			else if(game->map_str[i * game->width + j] == 'P')
+			else if (game->map_str[i * game->width + j] == 'P')
 				game->p++;
-			else if(game->map_str[i * game->width + j] == 'E')
+			else if (game->map_str[i * game->width + j] == 'E')
 				game->e++;
-			else if(game->map_str[i * game->width + j] != '0' && game->map_str[i * game->width + j] != '1')
+			else if (game->map_str[i * game->width + j] != '0'
+				&& game->map_str[i * game->width + j] != '1')
 				return (1);
 			j++;
 		}
 		i++;
 	}
-	if ( game->p != 1 || game->c < 1 || game->e != 1)
+	if (game->p != 1 || game->c < 1 || game->e != 1)
 		return (1);
 	return (0);
 }
 
-int print_error(char *str)
-{
-	int	len;
-
-	len = ft_strlen(str);
-	write(2, str, len);
-	return(1);
-}
-
-int check_map(t_game *game)
+int	check_map(t_game *game)
 {
 	game->c = 0;
 	game->e = 0;
 	game->p = 0;
-	if (game->height < 3 || game->width < 3 || game->width * 64 > MAX_WIDTH || game->height * 64 > MAX_HEIGHT)
-		return(print_error("Error : Invalid map\n"));
 	if (check_wall_row(game) || check_wall_col(game))
-		return(print_error("Error : Map is not surrounded by walls\n"));
+	{
+		free(game->map_str);
+		return (print_error("Error : Map is not surrounded by walls\n"));
+	}
 	if (essential(game))
-		return(print_error("Error : Map requirements are not met\n"));
+	{
+		free(game->map_str);
+		return (print_error("Error : Map requirements are not met\n"));
+	}
 	return (0);
 }
-
