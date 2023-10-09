@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:12:37 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/09 16:19:53 by seonghmo         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:46:18 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,24 @@ void	set_map(t_game *game)
 			&width, &height);
 }
 
+int	read_file(char *map)
+{
+	int	fd;
+	int	len;
+
+	len = ft_strlen(map);
+	if (len < 5 || map[len - 1] != 'r'
+		|| map[len - 2] != 'e'
+		|| map[len - 3] != 'b'
+		|| map[len - 4] != '.')
+		return (print_error("Error : Invalid extension\n"));
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		return (print_error("Error : Failed to open file\n"));
+	close(fd);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_game	game;
@@ -87,6 +105,8 @@ int	main(int ac, char **av)
 	int		p_index;
 
 	if (ac != 2)
+		return (1);
+	if (read_file(av[1]))
 		return (1);
 	read_size(av[1], &game);
 	if (check_map_size(&game))
