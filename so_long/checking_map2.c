@@ -6,7 +6,7 @@
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 19:58:42 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/09 19:28:00 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/10/09 21:48:28 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ int	init_check(t_check *check, t_game *game)
 
 	i = 0;
 	check->c = 0;
-	check->visited = (int *)malloc(sizeof(int) * (ft_strlen(game->map_str)));
-	ft_memset(check->visited, 0, sizeof(int) * (ft_strlen(game->map_str)));
+	if (game->map_str)
+	{
+		check->visited = (int *)malloc(sizeof(int) * (ft_strlen(game->map_str)));
+		if (!check->visited)
+			exit(1);
+		ft_memset(check->visited, 0, sizeof(int) * (ft_strlen(game->map_str)));
+	}
 	while (i < ft_strlen(game->map_str))
 	{
 		if (game->map_str[i] == 'P')

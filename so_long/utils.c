@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 21:11:36 by seonghmo          #+#    #+#             */
-/*   Updated: 2023/09/26 16:48:22 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2023/10/09 22:07:57 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1)
 		s1 = ft_strdup("");
 	if (!s1)
-		return (0);
+		exit(1);
 	p = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!p)
 	{
 		free(s1);
-		return (0);
+		exit(1);
 	}
 	i = -1;
 	while (s1[++i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:51:07 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/09 16:07:19 by seonghmo         ###   ########.fr       */
+/*   Updated: 2023/10/09 21:51:46 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_strdup_for_map(char *s1)
 	len = ft_strlen(s1);
 	p = (char *)malloc(len);
 	if (!p)
-		return (0);
+		exit(1);
 	while (s1[i] && s1[i] != '\n')
 	{
 		p[i] = s1[i];
