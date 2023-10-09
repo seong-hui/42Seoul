@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checking_map2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 19:58:42 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/09 16:18:25 by seonghmo         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:28:00 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

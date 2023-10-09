@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:12:37 by moonseonghu       #+#    #+#             */
-/*   Updated: 2023/10/09 17:46:18 by seonghmo         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:42:43 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	main(int ac, char **av)
 	int		p_index;
 
 	if (ac != 2)
-		return (1);
+		return (print_error("Error : Invalid number of arguments\n"));
 	if (read_file(av[1]))
 		return (1);
 	read_size(av[1], &game);
