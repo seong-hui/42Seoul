@@ -2,7 +2,7 @@ NAME = so_long
 CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -L./mlx -lmlx -framework OpenGL -framework Appkit
 MLX_DIR = mlx
-MLX=libmlx.a
+MLX = libmlx.a
 
 SRCS :=
 SRCS += main.c
