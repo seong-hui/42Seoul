@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
+/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 15:45:17 by seonghmo          #+#    #+#             */
-/*   Updated: 2023/12/27 16:24:39 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2024/01/02 15:42:53 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int ft_isdigit(int c)
+static int	ft_isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 		return (1);
 	return (0);
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int i;
-	int sign;
-	unsigned long long re;
+	int					i;
+	int					sign;
+	unsigned long long	re;
 
 	i = 0;
 	sign = 1;

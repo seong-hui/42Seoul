@@ -1,9 +1,12 @@
 NAME = philo
-CFLAGS = 
-
+CC= cc
+CFLAGS = -Wall -Werror -Wextra
 SRCS :=
 SRCS += main.c
 SRCS += ft_atoi.c
+SRCS += philo_utils.c
+SRCS += init_free.c
+SRCS += thread.c
 
 OBJS = $(SRCS:.c=.o)
 
