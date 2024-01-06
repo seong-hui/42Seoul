@@ -3,36 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:41:07 by moonseonghu       #+#    #+#             */
-/*   Updated: 2024/01/03 18:56:55 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/06 02:10:48 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void modify_monitor(t_arg *arg){
+	pthread_mutex_lock(&(arg->monitoring));
+	arg->monitor = 1;
+	pthread_mutex_unlock(&(arg->monitoring));
+}
 
 void	check_philos(t_arg *arg, t_philos *philo)
 {
 	int			i;
 	long long	now;
 
-	while (!arg->monitor)
+	while (1)
 	{
+		if (monitoring_check(arg))
+			return;
 		i = 0;
 		if ((arg->time_to_eat != 0) && (arg->num_of_philo == arg->must_eat_cnt))
-			arg->monitor = 1;
+		{
+			modify_monitor(arg);
+			// arg->monitor = 1;
+		}
 		else
 		{
 			while (i < arg->num_of_philo)
 			{
-				pthread_mutex_lock(&(arg->time));
 				now = get_time();
-				if ((now - philo[i].last_eat_time) > arg->time_to_die)
+				pthread_mutex_lock(&(arg->time));
+				if (now - philo[i].last_eat_time > arg->time_to_die)
 				{
-					print_philo(arg, philo[i].id, "died");
 					pthread_mutex_unlock(&(arg->time));
-					arg->monitor = 1;
+					print_philo(arg, philo[i].id, "died");
+					// printf("test\n");
+					modify_monitor(arg);
+					// arg->monitor = 1;
 					break ;
 				}
 				pthread_mutex_unlock(&(arg->time));
@@ -64,7 +77,9 @@ int	start_philos(t_arg *arg, t_philos *philos)
 	flag = 0;
 	while (i < arg->num_of_philo)
 	{
+		pthread_mutex_lock(&(arg->time));
 		philos[i].last_eat_time = get_time();
+		pthread_mutex_unlock(&(arg->time));
 		if (pthread_create(&(philos[i].thread), NULL, philos_thread, \
 		&(philos[i])))
 		{

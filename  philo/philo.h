@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:44:50 by moonseonghu       #+#    #+#             */
-/*   Updated: 2024/01/03 18:52:35 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/06 00:30:38 by moonseonghu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_arg
     pthread_mutex_t print;
     pthread_mutex_t *forks;
     pthread_mutex_t time;
+    pthread_mutex_t monitoring;
 
 }   t_arg;
 
@@ -56,5 +57,9 @@ int	init_philos(t_arg *arg, t_philos **philos);
 void	free_thread(t_arg *arg, t_philos *philos, int len);
 void	*philos_thread(void *philoData);
 void	*alone_thread(void *philoData);
+int monitoring_check(t_arg *arg);
+int	philo_action_right(t_arg *arg, t_philos *philo);
+int	philo_action_left(t_arg *arg, t_philos *philo);
+int	philo_action(t_arg *arg, t_philos *philo);
 
 #endif
