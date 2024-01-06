@@ -1,6 +1,6 @@
 NAME = philo
 CC= cc
-CFLAGS =
+CFLAGS = 
 SRCS :=
 SRCS += main.c
 SRCS += ft_atoi.c
@@ -16,7 +16,7 @@ all: $(NAME)
 	$(CC) -c  $(CFLAGS) $<
 
 $(NAME): $(OBJS)
-	$(CC) -o  $@ $^
+	$(CC) -fsanitize=thread -o  $@ $^
 	@echo "\033[36m" --- 🔹 Compile Complete 🔹 ---
 
 clean:

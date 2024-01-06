@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
+/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:41:07 by moonseonghu       #+#    #+#             */
-/*   Updated: 2024/01/06 02:10:48 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2024/01/06 22:54:13 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,18 @@ void	check_philos(t_arg *arg, t_philos *philo)
 	int			i;
 	long long	now;
 
-	while (1)
+	while (!monitoring_check(arg))
 	{
-		if (monitoring_check(arg))
-			return;
 		i = 0;
-		if ((arg->time_to_eat != 0) && (arg->num_of_philo == arg->must_eat_cnt))
+
+		pthread_mutex_lock(&(arg->eat_cnt_m));
+			int count = arg->must_eat_cnt;
+			pthread_mutex_unlock(&(arg->eat_cnt_m));
+
+		
+		if ((arg->time_to_eat != 0) && (arg->num_of_philo == count))
 		{
 			modify_monitor(arg);
-			// arg->monitor = 1;
 		}
 		else
 		{
@@ -43,9 +46,7 @@ void	check_philos(t_arg *arg, t_philos *philo)
 				{
 					pthread_mutex_unlock(&(arg->time));
 					print_philo(arg, philo[i].id, "died");
-					// printf("test\n");
 					modify_monitor(arg);
-					// arg->monitor = 1;
 					break ;
 				}
 				pthread_mutex_unlock(&(arg->time));
@@ -99,7 +100,6 @@ int	start_philos(t_arg *arg, t_philos *philos)
 		pthread_join(philos[i].thread, NULL);
 		i++;
 	}
-	// 조인을 안하면 프로그램이 먼저 종료되서 쓰레드가 진행되지 않는다.
 	free_thread(arg, philos, arg->num_of_philo);
 	return (0);
 }

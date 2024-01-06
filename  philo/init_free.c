@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moonseonghui <moonseonghui@student.42.f    +#+  +:+       +#+        */
+/*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:19 by seonghmo          #+#    #+#             */
-/*   Updated: 2024/01/06 01:49:21 by moonseonghu      ###   ########.fr       */
+/*   Updated: 2024/01/06 22:39:05 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ int	init_mutex(t_arg *arg)
 {
 	int	i;
 // 철학자의 현재 상태 표시를 섞이게 나오면 안되므로 출력 권한에 뮤텍스 부여
-	if (pthread_mutex_init(&(arg->print), NULL))
-		return (1);
 	if (pthread_mutex_init(&(arg->time), NULL))
 		return (1);
 	if (pthread_mutex_init(&(arg->monitoring), NULL))
+		return (1);
+	if (pthread_mutex_init(&(arg->eat_cnt_m), NULL))
+		return (1);
+	if (pthread_mutex_init(&(arg->print), NULL))
 		return (1);
 	arg->forks = malloc(sizeof(pthread_mutex_t) * arg->num_of_philo);
 	if (!(arg->forks))
@@ -85,10 +87,6 @@ void	free_thread(t_arg *arg, t_philos *philos, int len)
 {
 	int	i;
 
-	i = 0;
-	// while (i < len)
-	// 	pthread_join(philos[i++].thread, NULL);
-	pthread_mutex_destroy(&(arg->print));
 	pthread_mutex_destroy(&(arg->time));
 	i = 0;
 	while (i < len)
