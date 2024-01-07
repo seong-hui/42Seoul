@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:41:07 by moonseonghu       #+#    #+#             */
-/*   Updated: 2024/01/07 20:08:07 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:17:26 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	alone_philo(t_arg *arg, t_philos *philo)
 {
+	pthread_mutex_lock(&(arg->time));
 	philo[0].last_eat_time = get_time();
+	pthread_mutex_unlock(&(arg->time));
 	if (pthread_create(&(philo[0].thread), NULL, alone_thread, &(philo[0])))
 	{
 		free_thread(arg, philo);

@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 18:55:44 by seonghmo          #+#    #+#             */
-/*   Updated: 2024/01/07 19:30:18 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:15:54 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_ate_all(t_arg *arg)
 	pthread_mutex_lock(&(arg->eat_cnt_m));
 	must_eat_count = arg->must_eat_cnt;
 	pthread_mutex_unlock(&(arg->eat_cnt_m));
-	if ((arg->time_to_eat != 0) && (arg->num_of_philo == must_eat_count))
+	if (arg->num_of_philo == must_eat_count)
 	{
 		printf("%s\n", "ate it all!");
 		return (1);

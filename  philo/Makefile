@@ -1,5 +1,5 @@
 NAME = philo
-CC= cc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRCS :=
 SRCS += main.c
@@ -17,7 +17,7 @@ all: $(NAME)
 	$(CC) -c  $(CFLAGS) $<
 
 $(NAME): $(OBJS)
-	$(CC) -o  $@ $^
+	$(CC)  -o  $@ $^
 	@echo "\033[36m" --- 🔹 Compile Complete 🔹 ---
 
 clean:

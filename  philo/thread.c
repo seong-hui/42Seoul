@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 20:30:46 by seonghmo          #+#    #+#             */
-/*   Updated: 2024/01/07 19:15:23 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:13:21 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	*alone_thread(void *philoData)
 
 	philo = philoData;
 	arg = philo->arg;
-	pthread_mutex_lock(&(arg->forks[philo->left_fork]));
 	print_philo(arg, philo->id, "has taken a fork");
-	pthread_mutex_unlock(&(arg->forks[philo->left_fork]));
 	return (0);
 }
