@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:41:07 by moonseonghu       #+#    #+#             */
-/*   Updated: 2024/01/07 20:17:26 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:35:43 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ void	alone_philo(t_arg *arg, t_philos *philo)
 	pthread_mutex_unlock(&(arg->time));
 	if (pthread_create(&(philo[0].thread), NULL, alone_thread, &(philo[0])))
 	{
-		free_thread(arg, philo);
+		free_thread(arg, philo, 0);
 		return ;
 	}
 	check_philos(arg, philo);
-	pthread_join(philo[0].thread, NULL);
-	free_thread(arg, philo);
+	free_thread(arg, philo, arg->num_of_philo);
 }
 
 void	start_philos(t_arg *arg, t_philos *philos)
@@ -48,15 +47,10 @@ void	start_philos(t_arg *arg, t_philos *philos)
 		i++;
 	}
 	if (flag)
-		return (free_thread(arg, philos));
+		return (free_thread(arg, philos, i));
 	check_philos(arg, philos);
-	i = 0;
-	while (i < arg->num_of_philo)
-		pthread_join(philos[i++].thread, NULL);
-	return (free_thread(arg, philos));
+	return (free_thread(arg, philos, arg->num_of_philo));
 }
-
-
 
 void	check_leak(void)
 {
@@ -72,13 +66,15 @@ int	main(int ac, char **av)
 	if (ac >= 5 && ac <= 6)
 	{
 		if (init_arg(ac, av, &arg))
-			return (print_erorr("Invaild Arguments"));
+			return (print_erorr("Invaild arguments"));
 		if (init_philos(&arg, &philos))
-			return (print_erorr("Philo Creation Error"));
+			return (print_erorr("Philo creation error"));
 		if (arg.num_of_philo == 1)
 			alone_philo(&arg, philos);
 		else
 			start_philos(&arg, philos);
 	}
+	else
+		print_erorr("Invalid number of arguments");
 	return (0);
 }

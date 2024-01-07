@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:19 by seonghmo          #+#    #+#             */
-/*   Updated: 2024/01/07 20:16:02 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:29:13 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,13 @@ int	init_philos(t_arg *arg, t_philos **philos)
 	return (0);
 }
 
-void	free_thread(t_arg *arg, t_philos *philos)
+void	free_thread(t_arg *arg, t_philos *philos, int len)
 {
 	int	i;
 
+	i = 0;
+	while (i < len)
+		pthread_join(philos[i++].thread, NULL);
 	pthread_mutex_destroy(&(arg->time));
 	pthread_mutex_destroy(&(arg->monitoring));
 	pthread_mutex_destroy(&(arg->eat_cnt_m));

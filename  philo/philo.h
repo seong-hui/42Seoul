@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:44:50 by moonseonghu       #+#    #+#             */
-/*   Updated: 2024/01/07 19:50:00 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:27:18 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	print_philo(t_arg *arg, int id, char *str);
 int		init_arg(int ac, char **av, t_arg *arg);
 int		init_mutex(t_arg *arg);
 int		init_philos(t_arg *arg, t_philos **philos);
-void	free_thread(t_arg *arg, t_philos *philos);
+void	free_thread(t_arg *arg, t_philos *philos, int len);
 void	*philos_thread(void *philoData);
 void	*alone_thread(void *philoData);
 int		monitoring_check(t_arg *arg);

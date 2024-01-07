@@ -17,7 +17,7 @@ all: $(NAME)
 	$(CC) -c  $(CFLAGS) $<
 
 $(NAME): $(OBJS)
-	$(CC)  -o  $@ $^
+	$(CC) -o  $@ $^
 	@echo "\033[36m" --- 🔹 Compile Complete 🔹 ---
 
 clean:
