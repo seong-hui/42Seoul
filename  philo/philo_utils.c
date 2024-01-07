@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:43:37 by seonghmo          #+#    #+#             */
-/*   Updated: 2024/01/06 22:53:31 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/07 19:30:47 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,34 @@ void	pass_time(long long wait_time, t_arg *arg)
 	}
 }
 
-int	monitoring_check(t_arg *arg)
-{
-	pthread_mutex_lock(&(arg->monitoring));
-	if (arg->monitor == 1)
-	{
-		pthread_mutex_unlock(&(arg->monitoring));
-		return (1);
-	}
-	pthread_mutex_unlock(&(arg->monitoring));
-	return (0);
-}
-
-int	print_philo(t_arg *arg, int id, char *str)
+void	print_philo(t_arg *arg, int id, char *str)
 {
 	long long	now;
 
-	if (monitoring_check(arg))
-		return (0);
-	pthread_mutex_lock(&(arg->print));
 	now = get_time();
 	if (now == -1)
-		return (-1);
-
+		return ;
+	if (!monitoring_check(arg))
 		printf("%lld %d %s\n", now - arg->start_time, id, str);
-	pthread_mutex_unlock(&(arg->print));
+	return ;
+}
+
+void	print_philo_died(t_arg *arg, int id, char *str)
+{
+	long long	now;
+
+	pthread_mutex_lock(&(arg->monitoring));
+	now = get_time();
+	if (now == -1)
+		return ;
+	if (!arg->monitor)
+		printf("%lld %d %s\n", now - arg->start_time, id, str);
+	arg->monitor = 1;
+	pthread_mutex_unlock(&(arg->monitoring));
+}
+
+int	print_erorr(char *str)
+{
+	printf("%s\n", str);
 	return (0);
 }

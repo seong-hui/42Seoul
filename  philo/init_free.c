@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:25:19 by seonghmo          #+#    #+#             */
-/*   Updated: 2024/01/06 22:39:05 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:01:52 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,12 @@ int	init_arg(int ac, char **av, t_arg *arg)
 int	init_mutex(t_arg *arg)
 {
 	int	i;
-// 철학자의 현재 상태 표시를 섞이게 나오면 안되므로 출력 권한에 뮤텍스 부여
+
 	if (pthread_mutex_init(&(arg->time), NULL))
 		return (1);
 	if (pthread_mutex_init(&(arg->monitoring), NULL))
 		return (1);
 	if (pthread_mutex_init(&(arg->eat_cnt_m), NULL))
-		return (1);
-	if (pthread_mutex_init(&(arg->print), NULL))
 		return (1);
 	arg->forks = malloc(sizeof(pthread_mutex_t) * arg->num_of_philo);
 	if (!(arg->forks))
@@ -66,15 +64,15 @@ int	init_philos(t_arg *arg, t_philos **philos)
 
 	*philos = (t_philos *)malloc(sizeof(t_philos) * arg->num_of_philo);
 	if (!(*philos))
-		return (1);	
+		return (1);
 	i = 0;
 	while (i < arg->num_of_philo)
 	{
-		(*philos)[i].id = i + 1; // 포인터가 아닌 배열 구조체에 접근
+		(*philos)[i].id = i + 1;
 		(*philos)[i].eat_cnt = 0;
 		(*philos)[i].left_fork = i;
 		(*philos)[i].right_fork = (i + 1) % arg->num_of_philo;
-		(*philos)[i].last_eat_time = get_time();
+		(*philos)[i].last_eat_time = 0;
 		(*philos)[i].arg = arg;
 		i++;
 	}
@@ -83,13 +81,17 @@ int	init_philos(t_arg *arg, t_philos **philos)
 	return (0);
 }
 
-void	free_thread(t_arg *arg, t_philos *philos, int len)
+void	free_thread(t_arg *arg, t_philos *philos)
 {
 	int	i;
 
 	pthread_mutex_destroy(&(arg->time));
+	pthread_mutex_destroy(&(arg->monitoring));
+	pthread_mutex_destroy(&(arg->eat_cnt_m));
 	i = 0;
-	while (i < len)
+	while (i < arg->num_of_philo)
 		pthread_mutex_destroy(&(arg->forks[i++]));
 	free(arg->forks);
+	free(philos);
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:44:50 by moonseonghu       #+#    #+#             */
-/*   Updated: 2024/01/06 22:38:38 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/07 19:50:00 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ typedef struct s_arg
 	pthread_mutex_t	time;
 	pthread_mutex_t	monitoring;
 	pthread_mutex_t	eat_cnt_m;
-	pthread_mutex_t	print;
-
 }	t_arg;
 
 typedef struct s_philos
@@ -48,19 +46,20 @@ typedef struct s_philos
 
 }	t_philos;
 
-int     ft_atoi(const char *str);
-long    get_time(void);
-void    pass_time(long long wait_time, t_arg *arg);
-int	print_philo(t_arg *arg, int id, char *str); 
-int	init_arg(int ac, char **av, t_arg *arg);
-int	init_mutex(t_arg *arg);
-int	init_philos(t_arg *arg, t_philos **philos);
-void	free_thread(t_arg *arg, t_philos *philos, int len);
+int		ft_atoi(const char *str);
+long	get_time(void);
+void	pass_time(long long wait_time, t_arg *arg);
+void	print_philo(t_arg *arg, int id, char *str);
+int		init_arg(int ac, char **av, t_arg *arg);
+int		init_mutex(t_arg *arg);
+int		init_philos(t_arg *arg, t_philos **philos);
+void	free_thread(t_arg *arg, t_philos *philos);
 void	*philos_thread(void *philoData);
 void	*alone_thread(void *philoData);
-int monitoring_check(t_arg *arg);
-int	philo_action_right(t_arg *arg, t_philos *philo);
-int	philo_action_left(t_arg *arg, t_philos *philo);
-int	philo_action(t_arg *arg, t_philos *philo);
+int		monitoring_check(t_arg *arg);
+int		philo_action(t_arg *arg, t_philos *philo);
+void	print_philo_died(t_arg *arg, int id, char *str);
+void	check_philos(t_arg *arg, t_philos *philo);
+int		print_erorr(char *str);
 
 #endif
