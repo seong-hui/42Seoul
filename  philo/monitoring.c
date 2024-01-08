@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 18:55:44 by seonghmo          #+#    #+#             */
-/*   Updated: 2024/01/07 20:15:54 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:59:12 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	check_philos(t_arg *arg, t_philos *philo)
 			{
 				now = get_time();
 				pthread_mutex_lock(&(arg->time));
-				if (now - philo[i].last_eat_time > arg->time_to_die)
+				if (now - philo[i].last_eat_time >= arg->time_to_die)
 				{
 					pthread_mutex_unlock(&(arg->time));
 					print_philo_died(arg, philo[i].id, "died");

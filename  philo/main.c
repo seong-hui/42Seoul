@@ -6,7 +6,7 @@
 /*   By: seonghmo <seonghmo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:41:07 by moonseonghu       #+#    #+#             */
-/*   Updated: 2024/01/07 20:35:43 by seonghmo         ###   ########.fr       */
+/*   Updated: 2024/01/08 13:17:09 by seonghmo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,8 @@ void	start_philos(t_arg *arg, t_philos *philos)
 	return (free_thread(arg, philos, arg->num_of_philo));
 }
 
-void	check_leak(void)
-{
-	system("leaks philo");
-}
-
 int	main(int ac, char **av)
 {
-	// atexit(check_leak);
 	t_arg		arg;
 	t_philos	*philos;
 
