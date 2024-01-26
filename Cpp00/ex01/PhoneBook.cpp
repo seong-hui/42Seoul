@@ -5,11 +5,11 @@ PhoneBook::PhoneBook() : oldestContactIndex(0) {}
 
 void PhoneBook::addContact(Contact newContact){
         if (oldestContactIndex < MAX_CONTACTS) {
-            newContact.index = oldestContactIndex;
+            newContact.setIndex(oldestContactIndex);
             contacts[oldestContactIndex++] = newContact;
         } else {
             int index = oldestContactIndex % MAX_CONTACTS;
-            newContact.index = oldestContactIndex; 
+            newContact.setIndex(oldestContactIndex);
             contacts[index] = newContact;
             oldestContactIndex++;
         }
@@ -30,10 +30,10 @@ void PhoneBook::displayContacts(){
         if (displayIndex < 0) {
             displayIndex += MAX_CONTACTS;
         }
-            std::cout << std::setw(10) << contacts[displayIndex].index << "|"
-                      << std::setw(10) << (contacts[displayIndex].firstName.length() > 10 ? contacts[displayIndex].firstName.substr(0, 9) + "." : contacts[displayIndex].firstName) << "|"
-                      << std::setw(10) << (contacts[displayIndex].lastName.length() > 10 ? contacts[displayIndex].lastName.substr(0, 9) + "." : contacts[displayIndex].lastName) << "|"
-                      << std::setw(10) << (contacts[displayIndex].nickname.length() > 10 ? contacts[displayIndex].nickname.substr(0, 9) + "." : contacts[displayIndex].nickname) << std::endl;
+            std::cout << std::setw(10) << contacts[displayIndex].getIndex() << "|"
+                      << std::setw(10) << (contacts[displayIndex].getFirstName().length() > 10 ? contacts[displayIndex].getFirstName().substr(0, 9) + "." : contacts[displayIndex].getFirstName()) << "|"
+                      << std::setw(10) << (contacts[displayIndex].getLastName().length() > 10 ? contacts[displayIndex].getLastName().substr(0, 9) + "." : contacts[displayIndex].getLastName()) << "|"
+                      << std::setw(10) << (contacts[displayIndex].getNickname().length() > 10 ? contacts[displayIndex].getNickname().substr(0, 9) + "." : contacts[displayIndex].getNickname()) << std::endl;
         }
     }
 
@@ -74,11 +74,11 @@ void PhoneBook::searchContact(){
                     if(indexToDisplay >= MAX_CONTACTS)
                         indexToDisplay = indexToDisplay % 8;
                     const Contact& displayedContact = contacts[indexToDisplay];
-                    std::cout << "- First Name: " << displayedContact.firstName << std::endl;
-                    std::cout << "- Last Name: " << displayedContact.lastName << std::endl;
-                    std::cout << "- Nickname: " << displayedContact.nickname << std::endl;
-                    std::cout << "- Phone Number: " << displayedContact.phoneNumber << std::endl;
-                    std::cout << "- Darkest Secret: " << displayedContact.darkestSecret << std::endl;
+                    std::cout << "- First Name: " << displayedContact.getFirstName() << std::endl;
+                    std::cout << "- Last Name: " << displayedContact.getLastName() << std::endl;
+                    std::cout << "- Nickname: " << displayedContact.getNickname() << std::endl;
+                    std::cout << "- Phone Number: " << displayedContact.getPhoneNumber() << std::endl;
+                    std::cout << "- Darkest Secret: " << displayedContact.getDarkestSecret() << std::endl;
                     break;
             } else {
                 std::cout << "[Invalid input] Please enter a valid index." << std::endl;

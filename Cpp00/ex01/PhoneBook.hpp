@@ -10,7 +10,7 @@ class PhoneBook {
 private:
     Contact contacts[MAX_CONTACTS];
     int oldestContactIndex;
-    bool isNumeric(const std::string& input);  
+    bool isNumeric(const std::string& input);
 
 public:
     PhoneBook();

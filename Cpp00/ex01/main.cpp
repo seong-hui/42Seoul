@@ -35,11 +35,11 @@ int main() {
 
         if (choice == "ADD") {
             Contact newContact;
-            newContact.firstName = getNonEmptyInput("- Please enter your first name:");
-            newContact.lastName = getNonEmptyInput("- Please enter your last name:");
-            newContact.nickname = getNonEmptyInput("- Please enter your nickname:");
-            newContact.phoneNumber = getNonEmptyInput("- Please enter your phone number:");
-            newContact.darkestSecret = getNonEmptyInput("- Please enter your darkest secret:");
+            newContact.setFirstName(getNonEmptyInput("- Please enter your first name:"));
+            newContact.setLastName(getNonEmptyInput("- Please enter your last name:"));
+            newContact.setNickname(getNonEmptyInput("- Please enter your nickname:"));
+            newContact.setPhoneNumber(getNonEmptyInput("- Please enter your phone number:"));
+            newContact.setDarkestSecret(getNonEmptyInput("- Please enter your darkest secret:"));
             phoneBook.addContact(newContact);
         } else if (choice == "SEARCH") {
             phoneBook.searchContact();

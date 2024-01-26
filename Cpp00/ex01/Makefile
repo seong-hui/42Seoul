@@ -4,6 +4,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS :=
 SRCS += PhoneBook.cpp
 SRCS += main.cpp
+SRCS += Contact.cpp
 
 HDRS :=
 HDRS += PhoneBook.hpp
