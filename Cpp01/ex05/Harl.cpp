@@ -13,17 +13,13 @@ void Harl::error(void){
     std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-Harl::Harl(void){
-    funcs[0] = &Harl::debug;
-    funcs[1] = &Harl::info;
-    funcs[2] = &Harl::warning;
-    funcs[3] = &Harl::error;
-}
+Harl::Harl(void){}
 
 Harl::~Harl(void){}
 
 void Harl::complain(std::string level){
     std::string levels[4] = {"DEBUG","INFO", "WARNING", "ERROR"};
+    void (Harl::*funcs[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
     
     for(int i=0; i<4;i++){
         if(levels[i] == level){

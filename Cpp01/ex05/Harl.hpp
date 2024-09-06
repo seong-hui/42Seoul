@@ -9,7 +9,6 @@ class Harl{
         void info(void);
         void warning(void);
         void error(void);
-        void (Harl::*funcs[4])(void);
     public:
         Harl(void);
         ~Harl(void);
