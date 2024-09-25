@@ -1,8 +1,8 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main() {
-    ScavTrap A("A");
-	ScavTrap B("B");
+    FragTrap A("A");
+	FragTrap B("B");
     std::cout << std::endl;
 
 	A.attack(B);
@@ -20,7 +20,7 @@ int main() {
 	std::cout << std::endl;
 
 	A.takeDamage(15);
-	A.guardGate();
-	B.guardGate();
+	A.highFivesGuys();
+	B.highFivesGuys();
 	std::cout << std::endl;
 }

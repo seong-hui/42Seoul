@@ -1,14 +1,16 @@
-NAME = ClapTrap
+NAME = FragTrap
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS :=
 SRCS += ClapTrap.cpp
 SRCS += main.cpp
 SRCS += ScavTrap.cpp
+SRCS += FragTrap.cpp
 
 HDRS :=
 HDRS += ClapTrap.hpp
 HDRS += ScavTrap.hpp
+HDRS += FragTrap.hpp
 
 OBJS = $(SRCS:.cpp=.o)
 
