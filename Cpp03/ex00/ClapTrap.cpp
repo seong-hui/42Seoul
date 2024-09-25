@@ -25,7 +25,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &c){
 }
 
 ClapTrap::~ClapTrap(){
-    std::cout << name << "Destructor called" << std::endl;
+    std::cout << name << " Destructor called" << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target){
@@ -42,11 +42,11 @@ void ClapTrap::attack(const std::string& target){
 void ClapTrap::takeDamage(unsigned int amount){
     if(hitPoints <= amount){
         hitPoints = 0;
-        std::cout << "ClapTrap " << name << " has no hit points left!!!" << std::endl;
+        std::cout << name << " has no hit points left!!!" << std::endl;
     }
     else{
         hitPoints -= amount;
-        std::cout << "ClapTrap " << name << " takes " << amount << " damage"<<std::endl;
+        std::cout << name << " takes " << amount << " damage"<<std::endl;
     }
 }
 
@@ -54,10 +54,10 @@ void ClapTrap::takeDamage(unsigned int amount){
     if (energyPoints > 0 && hitPoints> 0){
         hitPoints += amount;
         energyPoints--;
-        std::cout << "ClapTrap " << name << " hit points are repaired by " << amount << std::endl;
+        std::cout << name << " hit points are repaired by " << amount << std::endl;
         
     } else{
-        std::cout << "ClapTrap " << name << " has no energy points or hit points left!!!" << std::endl;
+        std::cout << name << " has no energy points or hit points left!!!" << std::endl;
     }
 
  }

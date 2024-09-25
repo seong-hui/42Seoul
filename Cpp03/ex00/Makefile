@@ -3,7 +3,6 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS :=
 SRCS += ClapTrap.cpp
-SRCS += ClapTrap.cpp
 SRCS += main.cpp
 
 HDRS :=
