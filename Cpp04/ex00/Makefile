@@ -6,11 +6,13 @@ SRCS += Animal.cpp
 SRCS += main.cpp
 SRCS += Cat.cpp
 SRCS += Dog.cpp
+SRCS += WrongAnimal.cpp
 
 HDRS :=
 HDRS += Animal.hpp
 HDRS += Cat.hpp
 HDRS += Dog.hpp
+HDRS += WrongAnimal.hpp
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -22,7 +22,7 @@ Animal::~Animal(){
 }
 
 void Animal::makeSound() const{
-    std::cout << "Animal sound" << std::endl;
+    std::cout << "Animal sounds ~~!" << std::endl;
 }
 
 std::string Animal::getType() const{
