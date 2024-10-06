@@ -24,3 +24,18 @@ Brain& Brain::operator=(const Brain &a){
 Brain::~Brain(){
     std::cout << "Brain Destructor called" << std::endl;
 }
+
+std::string Brain::getIdea(int index) const{
+    if(index >=0 && index <100)
+        return ideas[index];
+    else
+        return "out of index";
+
+}
+
+void Brain::setIdea(int index, const std::string idea){
+    if(index >=0 && index <100)
+        ideas[index] = idea;
+    else
+        std::cerr << "out of index" << std::endl;
+}
