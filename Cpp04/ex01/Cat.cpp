@@ -30,3 +30,7 @@ Cat::~Cat(){
 void Cat::makeSound() const{
     std::cout << "Cat sounds ~~!" << std::endl;
 }
+
+Brain* Cat::getBrain() const{
+    return this->brain;
+}
