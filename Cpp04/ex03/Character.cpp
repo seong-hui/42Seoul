@@ -77,3 +77,7 @@ void Character::unequip(int idx){
         std::cout << name << " unequipped in "<<idx << "th inventory"<< std::endl;
     }
 }
+
+std::string const &Character::getName() const{
+    return name;
+}
