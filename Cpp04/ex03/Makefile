@@ -2,19 +2,22 @@ NAME = a.out
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS :=
-SRCS += AAnimal.cpp
+SRCS += AMateria.cpp
 SRCS += main.cpp
-SRCS += Cat.cpp
-SRCS += Dog.cpp
-SRCS += WrongAnimal.cpp
-SRCS += Brain.cpp
+SRCS += Character.cpp
+SRCS += Cure.cpp
+SRCS += Ice.cpp
+SRCS += MateriaSource.cpp
 
 HDRS :=
-HDRS += AAnimal.hpp
-HDRS += Cat.hpp
-HDRS += Dog.hpp
-HDRS += WrongAnimal.hpp
-HDRS += Brain.hpp
+HDRS += AMateria.hpp
+HDRS += Character.hpp
+HDRS += ICharacter.hpp
+HDRS += Cure.hpp
+HDRS += Ice.hpp
+HDRS += IMateriaSource.hpp
+HDRS += MateriaSource.hpp
+
 
 OBJS = $(SRCS:.cpp=.o)
 

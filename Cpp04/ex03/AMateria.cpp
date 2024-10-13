@@ -1,7 +1,7 @@
 #include "AMateria.hpp"
 
 AMateria::AMateria(){
-    std::cout << type << " constructor created!" << std::endl;
+    std::cout << "AMateria constructor created!" << std::endl;
 }
 
 AMateria::AMateria(std::string const & type): type(type){
