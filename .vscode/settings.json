@@ -68,6 +68,10 @@
     "__availability": "cpp",
     "deque": "cpp",
     "fstream": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "__functional_base": "cpp",
+    "functional": "cpp",
+    "iterator": "cpp",
+    "utility": "cpp"
   }
 }

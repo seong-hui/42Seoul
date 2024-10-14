@@ -1,6 +1,11 @@
 #include "Zombie.hpp"
 
+void checkLeaks()
+{
+	system("leaks zombie");
+}
 int main(){
+	// atexit(checkLeaks);
     Zombie unnamedZombie;
 	unnamedZombie.announce();
 	std::cout << std::endl;
@@ -15,4 +20,6 @@ int main(){
 	Zombie *newZom = newZombie("heapZombie");
 	newZom->announce();
 	delete(newZom);
+	checkLeaks();
+	
 }

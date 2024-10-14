@@ -1,8 +1,12 @@
 #include "Zombie.hpp"
+void checkLeaks()
+{
+	system("leaks zombie");
+}
 
 int main(){
-
-  Zombie* zombieList = zombieHorde(5, "test");
+  // atexit(checkLeaks);
+  Zombie* zombieList = zombieHorde(5, "test"); 
   for (int i = 0; i < 5; i++) {
     zombieList[i].announce();
 	}
