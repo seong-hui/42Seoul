@@ -64,6 +64,10 @@
     "compare": "cpp",
     "concepts": "cpp",
     "algorithm": "cpp",
-    "iomanip": "cpp"
+    "iomanip": "cpp",
+    "__availability": "cpp",
+    "deque": "cpp",
+    "fstream": "cpp",
+    "stack": "cpp"
   }
 }
