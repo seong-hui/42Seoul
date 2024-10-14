@@ -19,6 +19,11 @@ std::string Replacer::replaceString(const std::string& line) const{
 }
 
 int Replacer::processFile(){
+    if(s1==""){
+        std::cerr << "[ERROR] Null cannot be changed to any other string." << std::endl;
+        return 1;
+    }
+
     std::ifstream inputFile(filename);
     if(!inputFile){
         std::cerr << "[ERROR] Input file Error" << std::endl;
