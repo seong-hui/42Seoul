@@ -37,11 +37,10 @@ int Replacer::processFile(){
         return 1;
     }
 
-    std::string line;
-    while(std::getline(inputFile, line)){
-        std::string replaceLine = replaceString(line);
-        outputFile << replaceLine << '\n';
-    }
+    std::ostringstream fileContent;
+    fileContent << inputFile.rdbuf();
+    std::string replaceLine = replaceString(fileContent.str());
+    outputFile << replaceLine;
 
     inputFile.close();
     outputFile.close();
