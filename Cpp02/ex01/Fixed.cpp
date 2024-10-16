@@ -53,6 +53,3 @@ std::ostream& operator<<(std::ostream& o, const Fixed& f){
     o << f.toFloat();
 	return o;
 }
-// 고정 소수점 출력시 toFloat()을 적용해 부동소수점으로 값을 출력할 수 있도록 
-// ostream 클래스의 << 연산자를 오버로딩 해줌
-// 고정소수점 값을 실수로 출력할 수 있게 하기 위해 삽입 연산자를 오버로딩
