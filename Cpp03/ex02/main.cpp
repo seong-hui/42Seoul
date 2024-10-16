@@ -5,21 +5,25 @@ int main() {
 	FragTrap B("B");
     std::cout << std::endl;
 
-	A.attack(B);
-	B.takeDamage(79);
-	B.beRepaired(1);
-    B.takeDamage(2);
+	A.attack(B.getName());
+	B.takeDamage(30);
+	A.attack(B.getName());
+	B.takeDamage(30);
+	A.attack(B.getName());
+	B.takeDamage(30);
+	A.attack(B.getName());
+	B.takeDamage(30);
 	std::cout << std::endl;
 
-    A.attack(B);
-	B.attack(A);
+    A.attack(B.getName());
+	B.takeDamage(20);
+	B.attack(A.getName());
 	std::cout << std::endl;
 
 	A.beRepaired(5);
 	B.beRepaired(5);
 	std::cout << std::endl;
 
-	A.takeDamage(15);
 	A.highFivesGuys();
 	B.highFivesGuys();
 	std::cout << std::endl;
