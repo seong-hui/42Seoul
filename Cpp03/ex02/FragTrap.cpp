@@ -17,7 +17,7 @@ FragTrap:: FragTrap(std::string name){
 
 }
 
-FragTrap::FragTrap(const FragTrap &s){
+FragTrap::FragTrap(const FragTrap &s): ClapTrap(s){
     name = s.getName();
 	hitPoints = s.hitPoints;
 	energyPoints = s.attackDamage;
