@@ -1,7 +1,12 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
+void checkLeaks(){
+    system("leaks Animal");
+}
+
 int main() {
+    atexit(checkLeaks);
     int num = 4;
     Animal* animals[num];
 

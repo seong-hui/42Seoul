@@ -3,12 +3,12 @@
 #include "Cure.hpp"
 #include "MateriaSource.hpp"
 
-void checkleak(){
-    system("leaks --list -- a.out");
+void checkLeaks(){
+    system("leaks a.out");
 }
 
 int main() {
-    
+    // atexit(checkLeaks);
     IMateriaSource* src = new MateriaSource();
     std::cout << std::endl;
     src->learnMateria(new Ice()); 
@@ -38,6 +38,5 @@ int main() {
     delete src;
     std::cout <<"------"<< std::endl;
 
-    checkleak();
     return 0; 
 }

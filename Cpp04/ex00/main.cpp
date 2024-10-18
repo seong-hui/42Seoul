@@ -2,7 +2,6 @@
 #include "Cat.hpp"
 #include "WrongCat.cpp"
 
-
 int main() {
     const Animal* meta = new Animal(); 
     const Animal* j = new Dog();
