@@ -4,26 +4,26 @@
 #include "MateriaSource.hpp"
 
 void checkLeaks(){
-    system("leaks a.out");
+    system("leaks -list -- a.out");
 }
 
 int main() {
     // atexit(checkLeaks);
     IMateriaSource* src = new MateriaSource();
     std::cout << std::endl;
+
     src->learnMateria(new Ice()); 
-    std::cout << std::endl;
+    src->learnMateria(new Cure());
+    src->learnMateria(new Ice()); 
     src->learnMateria(new Cure());
     std::cout <<"------"<< std::endl;
 
     ICharacter* me = new Character("me");
-    AMateria* tmp;
     std::cout <<"------"<< std::endl;
 
+    AMateria* tmp;
     tmp = src->createMateria("ice");
     me->equip(tmp);
-    std::cout <<"------"<< std::endl;
-
     tmp = src->createMateria("cure");
     me->equip(tmp);
     std::cout <<"------"<< std::endl;
@@ -31,11 +31,18 @@ int main() {
     ICharacter* bob = new Character("bob"); 
     me->use(0, *bob);
     me->use(1, *bob);
+
+    AMateria* removedMateria = dynamic_cast<Character*>(me)->getMateria(0);
+    me->unequip(0);
+    delete removedMateria;
+
     std::cout <<"------"<< std::endl;
+
 
     delete bob; 
     delete me; 
     delete src;
+    
     std::cout <<"------"<< std::endl;
 
     return 0; 

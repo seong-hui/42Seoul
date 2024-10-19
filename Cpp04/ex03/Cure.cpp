@@ -1,7 +1,7 @@
 #include "Cure.hpp"
 
 Cure::Cure(){
-    type = "Cure";
+    type = "cure";
     std::cout << type << " constructor created!" << std::endl;
 }
 

@@ -36,21 +36,23 @@ MateriaSource& MateriaSource::operator=(const MateriaSource &a){
 
 MateriaSource::~MateriaSource(){
     for(int i =0;i <4;i++){
-        delete inven[i];
+        if (inven[i] !=NULL){
+            delete inven[i];
+            inven[i] = NULL;
+        }
     }
     std::cout << "MateriaSource Destructor called" << std::endl;
 }
 
 
 void MateriaSource::learnMateria(AMateria* m){
-    if(!m)
-        return;
     for(int i =0;i<4;i++){
-        if(!inven[i]){
+        if(inven[i]== NULL){
             inven[i] = m;
             std::cout <<"MateriaSource learend " << m->getType() <<" in inventory "<< i << std::endl;
+            return;
         }
-        return;
+        
     }
     std::cout<< "MateriaSource inventory is full" << std::endl;
 }

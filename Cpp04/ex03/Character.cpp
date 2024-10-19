@@ -45,39 +45,50 @@ Character& Character::operator=(const Character &a){
 
 Character::~Character(){
     for(int i =0;i <4;i++){
-        delete inven[i];
+        if(inven[i]!=NULL){
+            delete inven[i];
+            inven[i] = NULL;
+        }
     }
     std::cout << "Character Destructor called" << std::endl;
 }
 
 void Character::equip(AMateria* m){
-    if(!m)
+    if(m==NULL)
         return;
 
     for(int i =0;i<4;i++){
-        if(!inven[i]){
+        if(inven[i] == NULL){
             inven[i] = m;
             std::cout << name <<" equipped " << m->getType() <<" in inventory "<< i << std::endl;
+            return;
         }
-        return;
     }
     std::cout<< name <<" inventory is full" << std::endl;
+    return;
 }
 
 void Character::use(int idx, ICharacter& target){
-    if(idx >=0 && idx<4 && inven[idx]){
+    if(inven[idx] !=NULL){
         inven[idx]-> use(target);
-        std::cout << name << " used "<< inven[idx]->getType() << " to " << target.getName()<< std::endl;
     }
 }
 
 void Character::unequip(int idx){
-    if(idx >=0 && idx<4 && inven[idx]){
+    if(inven[idx]!= NULL){
         inven[idx] = NULL;
         std::cout << name << " unequipped in "<<idx << "th inventory"<< std::endl;
     }
+    std::cout << "There is nothing to unequip."<< std::endl;
 }
 
 std::string const &Character::getName() const{
     return name;
+}
+
+AMateria* Character::getMateria(int idx) const {
+    if (idx >= 0 && idx < 4) {
+        return inven[idx];
+    }
+    return NULL;
 }

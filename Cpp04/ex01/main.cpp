@@ -6,7 +6,7 @@ void checkLeaks(){
 }
 
 int main() {
-    atexit(checkLeaks);
+    // atexit(checkLeaks);
     int num = 4;
     Animal* animals[num];
 
